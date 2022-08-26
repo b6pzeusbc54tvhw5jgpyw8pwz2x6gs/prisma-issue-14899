@@ -1,6 +1,16 @@
 # issue14899
 This repository is for reproducing the [prisma 14899 issue](https://github.com/prisma/prisma/issues/14899).
 
+## Versions
+
+| Name            | Version            |
+|-----------------|--------------------|
+| Node            | v16.15.0           | 
+| OS              | darwin-arm64       |
+| Prisma Client   | 4.2.1              |
+| Query Engine    | 2920a97877e12e055c1333079b8d19cee7f33826|
+| Database        | mysql              |
+
 ## How to reproduce error
 
 1. Run MySQL using Docker:
