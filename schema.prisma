@@ -1,0 +1,26 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "mysql"
+  url               = env("DB_URL_WITH_CREDENTIALS")
+  shadowDatabaseUrl = env("SHADOW_DB_URL_WITH_CREDENTIALS")
+}
+
+model Project {
+  projectId         String             @id @map("project_id") @db.VarChar(40)
+  createdAt         DateTime           @default(now()) @map("created_at")
+  deployments       Deployment[]
+  @@map("project")
+}
+
+model Deployment {
+  projectId        String            @map("project_id") @db.VarChar(40)
+  project          Project           @relation(fields: [projectId], references: [projectId])
+  deploymentId     String            @map("deployment_id") @db.VarChar(20)
+  createdAt        DateTime          @default(now()) @map("created_at")
+  @@id([projectId, deploymentId])
+  @@map("deployment")
+}
+
